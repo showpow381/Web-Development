@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+		}
+		.container{
+			width: 100%;
+			padding: 10px;
+			border: 4px solid black;
+		}
+		.header{
+			padding: 0px 10px;
+			width: 100%;	
+			height: 100px;
+			background-color: #01ffff;
+			text-align: right;
+			border: 1px solid black;
+		}
+		.header h2{
+			font-size: 0.8em;
+		}
+		.flex-container{
+			width: 100%;
+			height: auto;
+			margin-top: 10px;
+			display: inline-flex;
+		}
+		.freinds{
+			color: #fff;
+			width: 20%;
+			height: 200px;
+			border: 4px solid black;
+			padding: 2px;
+			background-color: #8b008b;
+		}
+		.freinds ul li a{
+			color: white;
+		}
+		.freinds ul li a:hover{
+			color: red;
+		}
+		.blog-section{
+			margin-left: 10px;
+			width: 80%;
+
+		}
+		.blog-1, .blog-2{
+			background-color: #90ee90;
+			width: 100%;
+			border: 2px solid black;
+			padding: 10px;
+		}
+		.blog-1:after{
+		    clear: both;
+		    content: "";
+		    display: table;
+		}
+		.blog-1 img{
+			float: right;
+			width: 200px;
+		}
+		.blog-1 p, .blog-2 p{
+			width: calc(100% - 200px);
+			float: left;
+			text-align: justify;
+		}
+		.blog-1 time, .blog-2 time{
+			font-size: 2em;
+		}
+		.blog-2{
+			margin-top: 10px;
+		}
+		.blog-2 img{
+			float: right;
+			width: 200px;
+		}
+		.blog-2:after{
+		    clear: both;
+		    content: "";
+		    display: table;
+		}
+	</style>
+</head>
+<body>
+	<!-- main container -->
+	<div class="container">
+
+		<!-- Header Section -->
+		<div class="header">
+			<h1>Ilia's Movie Page</h1>
+			<h2>A Favorite Movie for Every Genre</h2>
+		</div>
+
+		<!-- main -->
+
+		<div class="flex-container">
+			<div class="freinds">
+				<h1>
+					Friends
+				</h1>
+				<ul>
+					<li><a href="#">friend name</a></li>
+					<li><a href="#">friend name</a></li>
+					<li><a href="#">friend name</a></li>
+					<li><a href="#">friend name</a></li>
+					<li><a href="#">friend name</a></li>
+					<li><a href="#">friend name</a></li>
+				</ul>
+			</div>
+
+			<div class="blog-section">
+				<div class="blog-1">
+					<time>2/16/22: Adventure</time>
+					
+						<p>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, dolores. Deleniti dignissimos, corrupti illum laboriosam tenetur architecto fugiat necessitatibus sunt dolor eligendi. Modi nulla voluptates aliquid, excepturi velit, dolore accusamus.
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ratione quidem aperiam nam, a, necessitatibus pariatur minus temporibus possimus explicabo repudiandae ut dolorum blanditiis velit, quam dolor vitae? Repellat, ea.
+						Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Ea tenetur labore accusamus, omnis, dolorum aliquid beatae, id fugiat delectus debitis  quas tempore voluptates adipisci maxime, ipsam molestiae facere veritatis?
+						</p>
+						<img src="images.jpg">
+				</div>
+
+				<div class="blog-2">
+					<time>2/02/22: Adventure</time>
+					
+						<p>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, dolores. Deleniti dignissimos, corrupti illum laboriosam tenetur architecto fugiat necessitatibus sunt dolor eligendi. Modi nulla voluptates aliquid, excepturi velit, dolore accusamus.
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ratione quidem aperiam nam, a, necessitatibus pariatur minus temporibus possimus explicabo repudiandae ut dolorum blanditiis velit, quam dolor vitae? Repellat, ea.
+						Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Ea tenetur labore accusamus, omnis, dolorum aliquid beatae, id fugiat delectus debitis quas tempore voluptates adipisci maxime, ipsam molestiae facere veritatis?
+						</p>
+						<img src="images.jpg">
+				</div>
+			</div>
+		</div>
+	</div>						
+</body>
+</html>

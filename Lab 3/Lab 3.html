@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!-- Lloyd Aclan
+lab 3: Enter the Maps
+Comp 484
+11/13/2022 -->
+
+<html>
+  <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcVBMmwpO2EjJ_wgZpVTVwQdUAPThHoJk&callback=myMap"></script>
+    <script>
+    window.addEventListener('load', onStart);
+
+    var MAX_QUESTIONS = 5
+    let currentQuestion = 0
+    let currentScore = 0
+
+    const questions = [
+        'Where is the CSUN Library?',
+        'Where is the G3 Parking Lot?',
+        'Where is the CSUN Student Recreational Center?',
+        'Where is the B3 Parking Structure?',
+        'Where is the CSUN Extended University Commons?',
+    ]
+
+    const csunLibraryCoords = [
+      { lat: 34.23976, lng: -118.53003 },
+      { lat: 34.23976, lng: -118.52862 },
+      { lat: 34.24038, lng: -118.52862 },
+      { lat: 34.24038, lng: -118.53003},
+    ];
+
+    const csunG3ParkingCoords = [
+      { lat: 34.23762, lng: -118.52555 },
+      { lat: 34.23762, lng: -118.52473 },
+      { lat: 34.23861, lng: -118.52473 },
+      { lat: 34.23860, lng: -118.52555 },
+    ];
+    
+    const csunSRCCoords = [
+      { lat: 34.23934, lng: -118.52518 },
+      { lat: 34.23934, lng: -118.52467 },
+      { lat: 34.24062, lng: -118.52467 },
+      { lat: 34.24062, lng: -118.52518 },
+    ];
+    
+    const csunB3ParkingCoords = [
+      { lat: 34.23750, lng: -118.53276 },
+      { lat: 34.23750, lng: -118.53192 },
+      { lat: 34.23885, lng: -118.53192 },
+      { lat: 34.23885, lng: -118.53276 },
+    ];
+    
+    const csunExtUniCommonsCoords = [
+      { lat: 34.24034, lng: -118.53356 },
+      { lat: 34.24034, lng: -118.53243 },
+      { lat: 34.24079, lng: -118.53243 },
+      { lat: 34.24079, lng: -118.53356 },
+    ];
+
+    function onStart() {
+      myMap()
+      quiz()
+    }
+
+    function quiz() {
+      document.getElementById("testQuestions").innerHTML = questions[currentQuestion]
+      //if they click the correct place call 'success' function 
+      //else call 'failed' function
+      //incriment current question and keep track of score
+      if(currentQuestion === 5){
+        console.log('end of quiz')
+      }
+    
+    }
+    
+
+    function myMap() {
+    var mapProp= {
+      center: new google.maps.LatLng(34.2390,-118.5300),
+      zoom: 17,
+      mapTypeId: "roadmap",
+      disableDefaultUI: true,
+      gestureHandling: "none",
+      styles:[
+        {
+          featureType: 'all',
+          elementType: 'labels',
+          stylers: [
+            {
+              visibility: 'off'
+            }
+          ]
+        },
+        {
+          featureType: 'road',
+          elementType: 'labels',
+          stylers: [
+            {
+              visibility: 'on'
+            }
+          ]
+        }
+      ]
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    
+    const csunLibrary = new google.maps.Polygon({
+      paths: csunLibraryCoords,
+      strokeColor: "#FFFFFF",
+      strokeOpacity: 0,
+      strokeWeight: 3,
+      fillColor: "#FFFFFF",
+      fillOpacity: 0,
+    });
+    csunLibrary.setMap(map);
+
+    const csunG3Parking = new google.maps.Polygon({
+      paths: csunG3ParkingCoords,
+      strokeColor: "#FFFFFF",
+      strokeOpacity: 0,
+      strokeWeight: 3,
+      fillColor: "#FFFFFF",
+      fillOpacity: 0,
+    });
+    csunG3Parking.setMap(map);
+
+    const  csunSRC= new google.maps.Polygon({
+      paths: csunSRCCoords,
+      strokeColor: "#FFFFFF",
+      strokeOpacity: 0,
+      strokeWeight: 3,
+      fillColor: "#FFFFFF",
+      fillOpacity: 0,
+    });
+    csunSRC.setMap(map);
+
+    const csunB3Parking = new google.maps.Polygon({
+      paths: csunB3ParkingCoords,
+      strokeColor: "#FFFFFF",
+      strokeOpacity: 0,
+      strokeWeight: 3,
+      fillColor: "#FFFFFF",
+      fillOpacity: 0,
+    });
+    csunB3Parking.setMap(map);
+
+    const csunExtUniCommons = new google.maps.Polygon({
+      paths: csunExtUniCommonsCoords,
+      strokeColor: "#FFFFFF",
+      strokeOpacity: 0,
+      strokeWeight: 3,
+      fillColor: "#FFFFFF",
+      fillOpacity: 0,
+    });
+    csunExtUniCommons.setMap(map);
+
+    //map.addListener("dblclick", () => {currentQuestion++});
+    if(currentQuestion === 0) {
+      map.addListener("dblclick", () => {failed(csunLibrary)});
+      csunLibrary.addListener("dblclick", () => {success(csunLibrary)});
+    }
+    if(currentQuestion === 1) {
+      map.addListener("dblclick", () => {failed(csunG3Parking)});
+      csunG3Parking.addListener("dblclick", () => {success(csunG3Parking)});
+    }
+    if(currentQuestion === 2) {
+      map.addListener("dblclick", () => {failed(csunSRC)});
+      csunSRC.addListener("dblclick", () => {success(csunSRC)});
+    }
+    if(currentQuestion === 3) {
+      map.addListener("dblclick", () => {failed(csunB3Parking)});
+      csunB3Parking.addListener("dblclick", () => {success(csunB3Parking)});
+    }
+    if(currentQuestion === 4) {
+      map.addListener("dblclick", () => {failed(csunExtUniCommons)});
+      csunExtUniCommons.addListener("dblclick", () => {success(csunExtUniCommons)});
+    }
+    map.setOptions({draggableCursor: 'pointer'})
+    function success(Building) {
+      Building.setOptions({strokeColor: 'Green'});
+      Building.setOptions({strokeOpacity: 0.8});
+      Building.setOptions({strokeWeight: 3});
+      Building.setOptions({fillColor: 'Green'});
+      Building.setOptions({fillOpacity: 0.4});
+      Building.setMap(map);
+      currentQuestion++
+      currentScore++
+      //Insert "Correct" for the user to know they were right
+      document.getElementById("answerResult").innerHTML = 'Das Right! :)'
+      if(currentQuestion < 5){
+        setTimeout(nextQuestion, 1500)
+      } else {
+        showScore()
+      }
+    }
+    
+    function failed(Building) {
+      Building.setOptions({strokeColor: 'Red'});
+      Building.setOptions({strokeOpacity: 0.8});
+      Building.setOptions({strokeWeight: 3});
+      Building.setOptions({fillColor: 'Red'});
+      Building.setOptions({fillOpacity: 0.3});
+      Building.setMap(map);
+      currentQuestion++
+      //Insert "Wrong" for the user to know they were wrong
+      document.getElementById("answerResult").innerHTML = 'Das WRONG! :('
+      if(currentQuestion < 5) {
+        setTimeout(nextQuestion, 1500)
+        } else {
+          showScore()
+        }
+      }
+    } 
+    //End of myMap function
+
+    function nextQuestion(){
+      //Clear correct/incorrect text for the next question 
+      document.getElementById("answerResult").innerHTML = ' '
+      myMap()
+      quiz()
+    }
+
+    function showScore() {
+    //insert animation for final score
+    document.getElementById("displayScore").innerHTML = 'You scored ' + currentScore + ' out of a possible 5 correct!!!'
+    let id = null;
+    const elem = document.getElementById("scoreContainer");
+    let pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 5);
+    function frame() {
+    if (pos == 300) {
+      clearInterval(id);
+    } else {
+      pos++;
+      elem.style.top = pos + 'px';
+    }
+  }
+    }
+
+
+    </script>
+
+    <style>
+    .questionContainer {
+      height: 100px;
+      background-color: red;
+    }
+    h1 {
+      text-align: center;
+      margin: -10px;
+    }
+    h2 {
+      text-align: center;
+      margin: -10px;
+      font-family: cursive;
+    }
+    #googleMap {
+      width:100%;
+      height:600px;
+    }
+    
+    #scoreContainer {
+      position: absolute;
+      width: 200px;
+      height: 100px;
+      margin-left: 50%;
+      
+    }
+    #displayScore {
+      margin: 40px 40px;
+      color: black;
+      position: absolute;
+      text-align: center;
+
+    }
+    </style>
+  </head>
+  <body>
+    <div class="questionContainer">
+      <h1 id="testQuestions"></h1><br><br>
+      <h2 id="answerResult"></h2>
+
+    </div>
+    <div id="googleMap"></div>
+
+    <div id="scoreContainer">
+      <div id="displayScoreContainer">
+        <h2 id="displayScore"></h2>
+      </div>
+    </div>
+
+  </body>
+</html>

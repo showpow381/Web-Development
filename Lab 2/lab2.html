@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>lab2</title>
+		<style type="text/css">
+			form {
+				margin: 0;
+				padding: 0;
+			}
+			form label, form input{
+				margin: 5px;
+				padding: 5px;
+			}
+			.body {
+				background-color: grey;
+			}
+			fieldset {
+
+			}
+			.calculator {
+				width: 300px;
+				border: 1px solid black;
+			}
+			.calculatorDisplay {
+				background-color: black;
+				color: white;
+				padding: 0.75rem 1rem;
+				text-align: right;
+				font-size: calc(1rem * 1.2 * 1.2);
+			}
+			.calculatorKeys {
+				background: grey;
+				display: grid;
+				grid-gap: 2px;
+				grid-template-columns: repeat(4, auto);
+				grid-template-areas: 
+					". . . ."
+					"one two three equal"
+					"four five six equal"
+					"seven eight nine equal"
+					"decimal zero clear equal"
+					;
+			}
+			.calculatorKeys > button {
+				border:  0;
+			}
+			.one {
+				grid-area: one;
+			}
+			.two {
+				grid-area: two;
+			}
+			.three {
+				grid-area: three;
+			}
+			.four {
+				grid-area: four;
+			}
+			.five {
+				grid-area: five;
+			}
+			.six {
+				grid-area: six;
+			}
+			.seven {
+				grid-area: seven;
+			}
+			.eight {
+				grid-area: eight;
+			}
+			.nine {
+				grid-area: nine;
+			}
+			.zero {
+				grid-area: zero;
+			}
+			.clear {
+				grid-area: clear;
+			}.decimal {
+				grid-area: decimal;
+			}
+			.equal {
+				grid-area: equal;
+				background-color: orange;
+			}
+			.equal:active {
+				background-color: orangered;
+			}
+			.operator {
+				background:  slategray;
+			}
+			.operator:active {
+				background: pink;
+			}
+			.num {
+				background: white;
+			}
+			.num:active {
+				background: lightgray;
+			}
+			
+
+		</style>
+		<script type="text/javascript">
+		let wordLen = 2; // Maximum word length
+		const background = document.querySelector('formArea')
+        function checkWordLen(obj){
+          	let len = obj.value.split(/[\s]+/);
+           	if(len.length > wordLen){
+               // alert("You cannot put more than "+wordLen+" words in this text area."); //Change alert to pop up form
+               document.getElementById("errors").innerHTML = "You cannot put more than "+wordLen+" words in this text area."
+               const myStyles =
+               		background-color: red;
+               		color: white;
+               const element = document.querySelector(".formArea");
+               element.style.cssText = myStyles
+               obj.oldValue = obj.value != obj.oldValue?obj.value:obj.oldValue;
+               obj.value = obj.oldValue?obj.oldValue:"";
+               return false;
+           	}
+         	return true;
+       	}
+		</script>
+	</head>
+	<body>
+		<div class="formArea">
+			<p id="errors"></p>
+			<form>
+				<fieldset>
+					<legend>Fill Out Form</legend>	
+					<label>First Name: </label>
+					<input type="text" name="firstName" placeholder="first name"><br>
+					<label>Last Name: </label>
+					<input type="text" name="lastName" placeholder="last name"><br>
+					<label>Student ID: </label>
+					<input type="text" name="studentID" placeholder="ID number" maxlength="9"><br>
+					<p>Biography: </p>
+					<textarea placeholder="Only 25 words plz!" style="width: 250px; height: 100px;" onchange="checkWordLen(this)" ></textarea>
+					<div class="calculator">
+						<div class="calculatorDisplay">0</div>
+						<div class="calculatorKeys">
+							<button class="operator plus" onclick="">+</button>
+							<button class="operator minus">-</button>
+							<button class="operator times">&times;</button>
+							<button class="operator divide">/</button>
+							<button type="button" class="num one">1</button>
+							<button class="num two">2</button>
+							<button class="num three">3</button>
+							<button class="num four">4</button>
+							<button class="num five">5</button>
+							<button class="num six">6</button>
+							<button class="num seven">7</button>
+							<button class="num eight">8</button>
+							<button class="num nine">9</button>
+							<button class="num decimal">.</button>
+							<button class="num zero">0</button>
+							<button class="num clear">C</button>
+							<button class="equal"> = </button>
+						</div>
+					</div>
+					<br><button type="submit">Submit</button>
+					<button type="save">Save</button>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>
